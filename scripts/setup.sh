@@ -7,7 +7,7 @@ set -e
 source copilot-fh/etc/default/copilot
 source conf/copilot-image.conf
 
-image_file="lepidopter-${COPILOT_BUILD}-${ARCH}.img"
+image_file="copilot-${COPILOT_BUILD}-${ARCH}.img"
 
 function usage() {
     echo "usage: setup.sh [options]"
@@ -77,13 +77,13 @@ git checkout tags/vmdebootstrap-0.10
 cp vmdebootstrap /usr/sbin/vmdebootstrap
 
 cd $HOME
-git clone https://github.com/openinternet/copilot.git
+git clone https://github.com/openinternet/copilot-install.git
 
 # Add loop kernel module required to mount loop devices
 modprobe loop
 
 cd copilot/
-./install
+./copilot-vmdebootstrap_build.sh
 
 if [ "${#compression_method[@]}" -ne 0 ] ; then
     for cmp in "${compression_method[@]}"; do

@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Modified from lepidopter https://github.com/TheTorProject/lepidopter
+
+set -x
+set -e # Exit on first error
+
+ROOTDIR="$1"
+
+git clone https://github.com/openinternet/copilot.git
+cd copilot
+./install
+
+echo "Customize script finished successfully."
+exit 0
