@@ -26,6 +26,10 @@
 # Read Only variables
 readonly PROG_DIR=$(readlink -m $(dirname $0))
 source "${PROG_DIR}/copilot-install/conf/copilot-image.conf"
+
+# Default platform is Beagle Bone Black
+# If you would like another platform use ./bin/setup.sh
+readonly platform='bbb'
 readonly image_file="copilot-${platform}-${COPILOT_BUILD}.img"
 
 main() {
@@ -60,6 +64,7 @@ main() {
     printf "Creating a new vagrant instance\n"
     vagrant up
     printf "Completed Installation Process...\n"
+    install_copilot
 }
 
 install_copilot() {
@@ -68,9 +73,9 @@ install_copilot() {
     if [[ "${install_check}" == 'y' ]]; then
         printf "What is the path to your SD cards device"
         read -p "Device Path: " dev_path
+        printf "Starting Install... This will take a while."
         sudo dd if="${PROG_DIR}/images/${image_file}" of="${dev_path}"
     fi
-
 }
 
 write_conf() {

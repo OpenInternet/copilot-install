@@ -8,7 +8,6 @@ set -x
 source /root/copilot-install/conf/copilot-image.conf
 USER=`whoami`
 
-
 image_file="copilot-${platform}-${COPILOT_BUILD}.img"
 
 function usage() {
