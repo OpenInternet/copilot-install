@@ -6,7 +6,7 @@ set -x
 source /etc/opt/copilot
 
 # Also defined separately in copilot repo "install" file.
-readonly PROG_DIR=$(readlink -m $(dirname $0))
+# readonly PROG_DIR=$(readlink -m $(dirname $0))
 
 temporary_fixes () {
     echo dnsmasq-base hold |dpkg --set-selections
@@ -83,6 +83,7 @@ setup_supervisor() {
     then
         echo "Supervisor already setup. Skipping...."
     else
+        mkdir -p /etc/supervisor/conf.d/
         # replace the various environment variables with the actual value of the vars
         # Using @ as the sed seperator so that we don't get errors when using double quotes
         cat $COPILOT_DIR/templates/supervisor \
@@ -159,6 +160,8 @@ dependencies() {
     export PATH="/usr/local/bin:$PATH"
     # Bcrypt Dependencies
     apt-get -y install build-essential
+    apt-get -y install libssl-dev
+    apt-get -y install libffi-dev
     # general plugin dependencies
     apt-get -y install git
 }
@@ -176,7 +179,7 @@ install() {
     apt-get -y install nginx supervisor
     # python-pip requirements
     # Upgrade is required to get setuptools upgraded
-    pip install --upgrade -r /etc/opt/requirements.txt
+    pip install --upgrade -r $COPILOT_DIR/requirements.txt
 }
 
 setup() {

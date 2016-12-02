@@ -6,7 +6,8 @@
 # support to include other common functions or call out to utilities
 # known to be installed in the outer VM running vmdebootstrap.
 # http://git.liw.fi/cgi-bin/cgit/cgit.cgi/vmdebootstrap/tree/doc/live.rst#n79
-set -ex
+set -e
+set -x
 
 source /root/copilot-install/copilot-fh/etc/opt/copilot
 source /root/copilot-install/conf/copilot-image.conf
@@ -19,7 +20,7 @@ readonly rootdir="$1"
 
 # Base Vars
 readonly ROOT_WEB_DIR="${rootdir}${WEB_DIR}"
-readonly ROOT_COPILOT_DIR="${WEB_DIR}/copilot"
+readonly ROOT_COPILOT_DIR="${ROOT_WEB_DIR}/copilot"
 readonly ROOT_SETUP_DIR="${rootdir}${ROOT_SETUP_DIR}"
 # Plugin Configuration Variables
 readonly ROOT_COPILOT_PLUGINS_DIRECTORY="${rootdir}${COPILOT_PLUGINS_DIRECTORY}"
@@ -86,7 +87,7 @@ rsync -avp copilot-fh/ ${rootdir}/
 mkdir -p ${ROOT_WEB_DIR}
 cd ${ROOT_WEB_DIR}
 #Create website Directory
-git clone https://github.com/openinternet/copilot.git
+git clone ${COPILOT_REPO}
 
 # ========================== TODO ============================
 # TODO REMOVE after debugging

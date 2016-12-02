@@ -2,13 +2,14 @@
 #
 # Modified from lepidopter https://github.com/TheTorProject/lepidopter
 
-set -ex
+set -e
+set -x
 
 source /root/copilot-install/conf/copilot-image.conf
 USER=`whoami`
 
 
-image_file="copilot-${COPILOT_BUILD}-${ARCH}.img"
+image_file="copilot-${platform}-${COPILOT_BUILD}.img"
 
 function usage() {
     echo "usage: setup.sh -p <platform> [options]"
@@ -131,11 +132,11 @@ create_image() {
 
     vmdebootstrap \
         --owner ${USER} --verbose \
-        --root-password=${PASSWD} \
+        --root-password="${PASSWD}" \
         --mirror http://httpredir.debian.org/debian \
         --log beaglebone-black.log --log-level debug \
-        --hostname ${HOSTNAME_IMG} \
-        --arch ${ARCH} \
+        --hostname "${HOSTNAME_IMG}" \
+        --arch "${ARCH}" \
         --foreign /usr/bin/qemu-arm-static \
         --enable-dhcp \
         --configure-apt \
@@ -148,12 +149,13 @@ create_image() {
         --serial-console-command "'/sbin/getty -L ttyO0 115200 vt100'" \
         --customize "/root/copilot-install/scripts/customize-${platform}.sh" \
         --bootsize 100mib --boottype vfat \
-        --image copilot-${platform}.img
+        --image ${image_file}
 
     echo "Completed vmdebootsrap"
 
     #./copilot-vmdebootstrap_build.sh --image copilot.img
-    cp copilot-${platform}.img /root/copilot-install/images/copilot-${platform}.img
+    mkdir -p /root/copilot-install/images/
+    cp "${image_file}" /root/copilot-install/images/"${image_file}"
 }
 
 while getopts "p:c:ht" opt; do
