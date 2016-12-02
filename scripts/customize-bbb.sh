@@ -7,7 +7,7 @@
 # known to be installed in the outer VM running vmdebootstrap.
 # http://git.liw.fi/cgi-bin/cgit/cgit.cgi/vmdebootstrap/tree/doc/live.rst#n79
 set -e
-set -x
+# set -x
 
 source /root/copilot-install/copilot-fh/etc/opt/copilot
 source /root/copilot-install/conf/copilot-image.conf
@@ -88,12 +88,6 @@ mkdir -p ${ROOT_WEB_DIR}
 cd ${ROOT_WEB_DIR}
 #Create website Directory
 git clone ${COPILOT_REPO}
-
-# ========================== TODO ============================
-# TODO REMOVE after debugging
-cd copilot
-git checkout vmdebootstrap
-# ============================================================
 
 #create setup directory
 mkdir -p ${ROOT_SETUP_DIR}

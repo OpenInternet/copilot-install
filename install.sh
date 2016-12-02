@@ -21,7 +21,7 @@
 #set -u
 
 # TODO remove DEBUGGING
-#set -x
+# set -x
 
 # Read Only variables
 readonly PROG_DIR=$(readlink -m $(dirname $0))

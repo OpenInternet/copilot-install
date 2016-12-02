@@ -3,7 +3,7 @@
 # Modified from lepidopter https://github.com/TheTorProject/lepidopter
 
 set -e
-set -x
+# set -x
 
 source /root/copilot-install/conf/copilot-image.conf
 USER=`whoami`

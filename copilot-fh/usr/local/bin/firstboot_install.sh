@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
 source /etc/opt/copilot
 
@@ -199,7 +199,7 @@ initial() {
 }
 
 #Put here your initialization sentences
-echo "This is the first boot. Installing Copilot"
+echo "Installing Copilot"
 cd /home/www/copilot
 initial
 echo "Installation Complete!"
