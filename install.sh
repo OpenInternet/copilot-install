@@ -25,7 +25,7 @@
 
 # Read Only variables
 readonly PROG_DIR=$(readlink -m $(dirname $0))
-source "${PROG_DIR}/copilot-install/conf/copilot-image.conf"
+source "${PROG_DIR}/conf/copilot-image.conf"
 
 # Default platform is Beagle Bone Black
 # If you would like another platform use ./bin/setup.sh
@@ -68,12 +68,12 @@ main() {
 }
 
 install_copilot() {
-    printf "Would you like to install CoPilot directly onto a SD card?"
+    printf "Would you like to install CoPilot directly onto a SD card? \n"
     read -p "[y/n] " install_check
     if [[ "${install_check}" == 'y' ]]; then
-        printf "What is the path to your SD cards device"
+        printf "What is the path to your SD cards device \n"
         read -p "Device Path: " dev_path
-        printf "Starting Install... This will take a while."
+        printf "Starting Install... This will take a while. \n"
         sudo dd if="${PROG_DIR}/images/${image_file}" of="${dev_path}"
     fi
 }

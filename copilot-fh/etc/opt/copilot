@@ -7,7 +7,7 @@ readonly SETUP_DIR=/tmp/setup
 readonly TESTING=false
 
 # Copilot Repo
-readonly COPILOT_REPO='https://github.com/openinternet/copilot.git'
+readonly COPILOT_REPO="https://github.com/openinternet/copilot.git"
 
 # Plugin Configuration Variables
 readonly PLUGINS_REPO="https://github.com/OpenInternet/copilot-plugins"

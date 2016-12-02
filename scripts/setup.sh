@@ -8,8 +8,6 @@ set -x
 source /root/copilot-install/conf/copilot-image.conf
 USER=`whoami`
 
-image_file="copilot-${platform}-${COPILOT_BUILD}.img"
-
 function usage() {
     echo "usage: setup.sh -p <platform> [options]"
     echo "with no options the script installs the dependencies and builds" \
@@ -184,5 +182,7 @@ while getopts "p:c:ht" opt; do
         exit 1
     esac
 done
+
+readonly image_file="copilot-${platform}-${COPILOT_BUILD}.img"
 
 main
