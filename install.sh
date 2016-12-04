@@ -75,6 +75,7 @@ install_copilot() {
         read -p "Device Path: " dev_path
         printf "Starting Install... This will take a while. \n"
         sudo dd if="${PROG_DIR}/images/${image_file}" of="${dev_path}"
+        sync
     fi
 }
 
