@@ -60,11 +60,12 @@ main() {
     fi
     printf "Starting Installation Process...\n\n"
     printf "Deleting any existing vagrant instances\n"
-    vagrant destroy
+    vagrant destroy -f
     printf "Creating a new vagrant instance\n"
     vagrant up
     printf "Completed Installation Process...\n"
     install_copilot
+    vagrant destroy -f
 }
 
 install_copilot() {
